@@ -1,0 +1,121 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=22 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "kick"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "punch"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "crawl"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "stand"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "fall"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle2"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "idle3"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "walk2"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "walk"
+
+[sub_resource type="AnimationNodeBlend3" id=12]
+
+[sub_resource type="AnimationNodeBlend2" id=13]
+
+[sub_resource type="AnimationNodeBlend3" id=14]
+
+[sub_resource type="AnimationNodeBlendTree" id=15]
+graph_offset = Vector2( -914.75, -70.5 )
+nodes/1/node = SubResource( 6 )
+nodes/1/position = Vector2( -420, 20 )
+nodes/2/node = SubResource( 7 )
+nodes/2/position = Vector2( -420, 140 )
+nodes/3/node = SubResource( 8 )
+nodes/3/position = Vector2( -420, 260 )
+nodes/Animation/node = SubResource( 11 )
+nodes/Animation/position = Vector2( -300, 380 )
+"nodes/Animation 2/node" = SubResource( 9 )
+"nodes/Animation 2/position" = Vector2( -300, 500 )
+"nodes/Animation 3/node" = SubResource( 10 )
+"nodes/Animation 3/position" = Vector2( 100, 480 )
+nodes/BlendIdle/node = SubResource( 12 )
+nodes/BlendIdle/position = Vector2( -240, 20 )
+nodes/BlendWalk/node = SubResource( 13 )
+nodes/BlendWalk/position = Vector2( -100, 360 )
+nodes/output/position = Vector2( 320, 100 )
+nodes/speed/node = SubResource( 14 )
+nodes/speed/position = Vector2( 140, 140 )
+node_connections = [ "speed", 0, "BlendIdle", "speed", 1, "BlendWalk", "speed", 2, "Animation 3", "output", 0, "speed", "BlendIdle", 0, "1", "BlendIdle", 1, "2", "BlendIdle", 2, "3", "BlendWalk", 0, "Animation", "BlendWalk", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeTransition" id=16]
+input_count = 2
+xfade_time = 0.5
+input_0/name = "stand"
+input_0/auto_advance = false
+input_1/name = "crawl"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeOneShot" id=17]
+autorestart_delay = 0.0
+autorestart_random_delay = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "attack"
+
+[sub_resource type="AnimationNodeOneShot" id=19]
+
+[sub_resource type="AnimationNodeOneShot" id=20]
+
+[sub_resource type="AnimationNodeTransition" id=21]
+input_count = 3
+xfade_time = 0.5
+input_0/name = "standing"
+input_0/auto_advance = false
+input_1/name = "falling"
+input_1/auto_advance = false
+input_2/name = "standing"
+input_2/auto_advance = false
+
+[resource]
+graph_offset = Vector2( 475.75, 144.75 )
+nodes/Animation/node = SubResource( 5 )
+nodes/Animation/position = Vector2( 1100, 460 )
+"nodes/Animation 2/node" = SubResource( 1 )
+"nodes/Animation 2/position" = Vector2( 400, 340 )
+"nodes/Animation 3/node" = SubResource( 2 )
+"nodes/Animation 3/position" = Vector2( 740, 400 )
+"nodes/Animation 4/node" = SubResource( 3 )
+"nodes/Animation 4/position" = Vector2( 1320, 600 )
+"nodes/Animation st/node" = SubResource( 4 )
+"nodes/Animation st/position" = Vector2( 1080, 600 )
+nodes/Idle/node = SubResource( 15 )
+nodes/Idle/position = Vector2( 340, 20 )
+nodes/Transition/node = SubResource( 16 )
+nodes/Transition/position = Vector2( 1820, 340 )
+nodes/angry/node = SubResource( 17 )
+nodes/angry/position = Vector2( 580, 120 )
+nodes/angryanim/node = SubResource( 18 )
+nodes/angryanim/position = Vector2( 360, 160 )
+nodes/kick/node = SubResource( 19 )
+nodes/kick/position = Vector2( 780, 200 )
+nodes/output/position = Vector2( 2040, 340 )
+nodes/punch/node = SubResource( 20 )
+nodes/punch/position = Vector2( 1020, 220 )
+nodes/state/node = SubResource( 21 )
+nodes/state/position = Vector2( 1380, 260 )
+node_connections = [ "state", 0, "punch", "state", 1, "Animation", "state", 2, "Animation st", "output", 0, "Transition", "Transition", 0, "state", "Transition", 1, "Animation 4", "angry", 0, "Idle", "angry", 1, "angryanim", "punch", 0, "kick", "punch", 1, "Animation 3", "kick", 0, "angry", "kick", 1, "Animation 2" ]
